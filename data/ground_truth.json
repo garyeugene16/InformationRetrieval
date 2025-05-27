@@ -1,0 +1,7 @@
+{
+  "information retrieval": ["D1", "D9", "D27"],
+  "natural language processing": ["D2", "D15", "D22"],
+  "vsm model": ["D3", "D19"],
+  "bm25": ["D4", "D18"],
+  "text preprocessing": ["D5", "D6", "D7", "D20"]
+}
