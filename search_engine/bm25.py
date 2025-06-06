@@ -26,7 +26,7 @@ class BM25Engine:
         # 3. Menghitung panjang rata-rata dari semua dokumen dalam koleksi.
         self.avg_doc_len = sum(self.doc_lens) / len(self.doc_lens)
 
-         # 4. Inisialisasi struktur data untuk statistik korpus.
+        # 4. Inisialisasi struktur data untuk statistik korpus.
         # df: Document Frequency -> Berapa banyak dokumen yang mengandung sebuah term.
         self.doc_freqs = defaultdict(int)   # df: berapa dokumen mengandung term
         # tf: Term Frequency -> Daftar berisi Counter untuk setiap dokumen, menyimpan frekuensi setiap term.
