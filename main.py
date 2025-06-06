@@ -79,6 +79,8 @@
 #     print(f"  VSM   → Precision: {vsm_prec:.5f}, Recall: {vsm_rec:.5f}, F1-score: {vsm_f1:.5f}")
 #     print(f"  BM25  → Precision: {bm25_prec:.5f}, Recall: {bm25_rec:.5f}, F1-score: {bm25_f1:.5f}\n")
 
+
+#===HEPI REVISI ====
 import json
 from search_engine.vsm import VSMEngine
 from search_engine.bm25 import BM25Engine
@@ -146,7 +148,7 @@ print(f"  BM25  → Precision: {bm25_avg['precision']:.2f}, Recall: {bm25_avg['r
 print("Kesimpulan:")
 if vsm_avg['f1'] > bm25_avg['f1']:
     print("VSM memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
-elif bm25_avg['f1'] > bm25_avg['f1']:
+elif bm25_avg['f1'] > vsm_avg['f1']: #PERBAIKAN KONDISI, SOALNYA SALAH
     print("BM25 memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
 else:
     print("VSM dan BM25 memiliki performa seimbang berdasarkan nilai rata-rata F1-score.")
