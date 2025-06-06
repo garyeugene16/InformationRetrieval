@@ -1,66 +1,14 @@
-# import json
-# from search_engine.vsm import VSMEngine
-# from search_engine.bm25 import BM25Engine
-
-# # Load documents
-# with open('data/documentsLibrary.json') as f:
-#     docs = json.load(f)
-    
-# with open('data/ground_truthLibrary.json') as f:
-#     ground_truth = json.load(f)
-
-# raw_texts = [doc["text"] for doc in docs]
-# doc_ids = [doc["doc_id"] for doc in docs]
-# doc_lookup = {doc["doc_id"]: doc["text"] for doc in docs}
-
-# # Inisialisasi search engine
-# vsm_engine = VSMEngine(raw_texts)
-# bm25_engine = BM25Engine(raw_texts)
-
-# def run_search_loop(searcher, engine_name):
-#     while True:
-#         query = input("\nMasukkan query ('exit' untuk keluar, 'engine' untuk ganti mesin): ")
-#         if query.lower() == 'exit':
-#             return False
-#         elif query.lower() == 'engine':
-#             return True
-
-#         top_k = 5
-#         ranked_ids, scores = searcher.search(query, top_k=top_k)
-
-#         if not ranked_ids or all(scores[i] == 0 for i in ranked_ids):
-#             print("Tidak ada dokumen relevan ditemukan.")
-#             continue
-
-#         print(f"\nTop {top_k} dokumen relevan menurut {engine_name.upper()}:\n")
-#         for i in ranked_ids:
-#             doc_id = doc_ids[i]
-#             print(f"{doc_id} (Skor: {scores[i]:.4f}): {doc_lookup[doc_id]}\n")
-
-#         # Simpan hasil ke file log
-#         with open("result_log.txt", "a") as f:
-#             f.write(f"Query: {query} (Engine: {engine_name})\n")
-#             for i in ranked_ids:
-#                 doc_id = doc_ids[i]
-#                 f.write(f"{doc_id} (Skor: {scores[i]:.4f}): {doc_lookup[doc_id]}\n")
-#             f.write("\n")
-
-# # Main loop (ganti engine jika diminta)
-# while True:
-#     engine = input("Pilih engine (vsm / bm25): ").lower()
-#     searcher = vsm_engine if engine == 'vsm' else bm25_engine
-#     repeat = run_search_loop(searcher, engine)
-#     if not repeat:
-#         break
-
-#FINAL
 import json
 from search_engine.vsm import VSMEngine
 from search_engine.bm25 import BM25Engine
 from search_engine.preprocessing import preprocess # Diambil dari versi Hepi
 
-# --- Load Dokumen (Sama seperti sebelumnya) ---
-with open('data/documentsLibrary.json') as f:
+# # --- Load Dokumen ---
+# with open('data/documentsLibrary.json') as f:
+#     docs = json.load(f)
+
+# --- Load Dokumen ---
+with open('data/documentsNew.json') as f:
     docs = json.load(f)
 
 raw_texts = [doc["text"] for doc in docs]

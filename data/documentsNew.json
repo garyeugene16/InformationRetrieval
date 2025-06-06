@@ -1,0 +1,122 @@
+[
+  {
+    "doc_id": "D01",
+    "text": "Information retrieval (IR) is the science of searching for documents, for information within documents, and for metadata about documents. The core challenge in information retrieval is to develop models that can understand a user's query and rank documents by relevance. Effective retrieval is key."
+  },
+  {
+    "doc_id": "D02",
+    "text": "Classic information retrieval models include the Vector Space Model (VSM), which uses a geometric approach based on cosine similarity. A more modern and often more effective probabilistic model is BM25, which provides superior ranking by considering document length. Both models are fundamental to search engine technology, but the probabilistic approach of BM25 gives it an edge in handling diverse document collections."
+  },
+  {
+    "doc_id": "D03",
+    "text": "The evaluation of an IR system is crucial for understanding its performance. Standard metrics include precision and recall. Precision measures result relevancy, while recall measures how many truly relevant documents are found by the system. Proper evaluation helps compare the performance of retrieval models like VSM and BM25."
+  },
+  {
+    "doc_id": "D04",
+    "text": "The Vector Space Model (VSM) represents documents and queries as vectors in a high-dimensional space. The relevance of a document to a query is often calculated using the cosine similarity between these vectors. This model is intuitive but does not account for document length."
+  },
+  {
+    "doc_id": "D05",
+    "text": "The BM25 ranking function is a sophisticated probabilistic model that improves upon simple TF-IDF by incorporating term frequency saturation and document length normalization. This makes BM25 particularly effective for web search where document lengths vary greatly."
+  },
+  {
+    "doc_id": "D06",
+    "text": "Natural Language Processing (NLP) provides the foundation for a modern information retrieval system. Key NLP techniques like stemming and stopword removal are essential preprocessing steps for preparing text before indexing and searching."
+  },
+  {
+    "doc_id": "D07",
+    "text": "Precision is a performance metric that calculates the fraction of retrieved documents that are truly relevant to the user's query. A high precision score means the search results are very accurate."
+  },
+  {
+    "doc_id": "D08",
+    "text": "Recall in information retrieval is defined as the fraction of all relevant documents in the collection that are successfully retrieved by the system."
+  },
+  {
+    "doc_id": "D09",
+    "text": "Modern search engines use complex ranking algorithms, often based on the BM25 model, to retrieve relevant web pages from a massive collection. The evaluation of these engines depends heavily on precision and recall to ensure user satisfaction with the search results. Ranking is the most critical component."
+  },
+  {
+    "doc_id": "D10",
+    "text": "Text preprocessing is a critical step for any retrieval system. The process involves tokenization to break text into words, followed by filtering out common words using a stopword list. Finally, stemming or lemmatization reduces words to their root form. This prepared text is then used for indexing."
+  },
+  {
+    "doc_id": "D11",
+    "text": "The F1-score is the harmonic mean of precision and recall, offering a single, balanced metric for a model's performance. It is widely used in IR evaluation."
+  },
+  {
+    "doc_id": "D12",
+    "text": "While VSM provides a simple geometric foundation for information retrieval, the BM25 model often yields superior ranking performance in real-world scenarios because it properly accounts for document length and term frequency saturation."
+  },
+  {
+    "doc_id": "D13",
+    "text": "Machine learning has revolutionized information retrieval. Learning to Rank (LTR) models use features from both the query and documents to train a model that can predict relevance more accurately than traditional models like BM25 or VSM. This is a key area of modern search research."
+  },
+  {
+    "doc_id": "D14",
+    "text": "Tokenization is the first step in text preprocessing, where a stream of text is segmented into individual words or tokens. This process can be simple or complex, handling punctuation and special characters."
+  },
+  {
+    "doc_id": "D15",
+    "text": "Web crawling is the process by which search engines discover new and updated pages to be added to their index. A web crawler, or spider, follows hyperlinks from one page to another to build a map of the web. This index is the foundation for information retrieval."
+  },
+  {
+    "doc_id": "D16",
+    "text": "An inverted index is the core data structure of most search engines. It maps terms to the documents that contain them, allowing for extremely fast retrieval of candidate documents for a given query."
+  },
+  {
+    "doc_id": "D17",
+    "text": "TF-IDF, which stands for Term Frequency-Inverse Document Frequency, is a numerical statistic intended to reflect how important a word is to a document in a collection or corpus. It is a key component of the Vector Space Model."
+  },
+  {
+    "doc_id": "D18",
+    "text": "The Industrial Revolution was a period of major industrialization that took place during the late 1700s and early 1800s. It saw the mechanization of agriculture and textile manufacturing and a revolution in power, including steam ships and railroads, which affected social, cultural, and economic conditions."
+  },
+  {
+    "doc_id": "D19",
+    "text": "A good ranking algorithm is the heart of a successful search engine. The ability to consistently place the most relevant documents at the top of the results is what defines a good user experience. Both search quality and speed are important for ranking."
+  },
+  {
+    "doc_id": "D20",
+    "text": "Lemmatization is a text normalization technique used in Natural Language Processing that aims to return the base or dictionary form of a word, which is known as the lemma. Unlike stemming, lemmatization considers the context and converts the word to its meaningful base form."
+  },
+  {
+    "doc_id": "D21",
+    "text": "Query expansion is a technique to improve retrieval performance by automatically expanding a user's query with related or synonymous terms. This can help increase recall by finding relevant documents that do not contain the exact query keywords."
+  },
+  {
+    "doc_id": "D22",
+    "text": "Photosynthesis is the process used by plants, algae, and certain bacteria to convert light energy into chemical energy. Through this process, they can synthesize organic compounds from carbon dioxide and water, releasing oxygen as a byproduct. This process is fundamental to life on Earth."
+  },
+  {
+    "doc_id": "D23",
+    "text": "There is often a trade-off between precision and recall. Improving precision, by being more selective, can sometimes hurt recall, and vice-versa. The F1-score is designed to find a balance between these two competing metrics during evaluation."
+  },
+  {
+    "doc_id": "D24",
+    "text": "Boolean retrieval is the simplest retrieval model, which processes queries as Boolean expressions (AND, OR, NOT). It returns documents that exactly match the query logic, without any form of ranking."
+  },
+  {
+    "doc_id": "D25",
+    "text": "Renaissance art, originating in 14th-century Italy, is characterized by a surge of interest in classical antiquity, the development of linear perspective, and a greater emphasis on realism and humanism. Artists like Leonardo da Vinci and Michelangelo are central figures of this art movement."
+  },
+  {
+    "doc_id": "D26",
+    "text": "Plate tectonics is the scientific theory that describes the large-scale motion of Earth's lithosphere. The theory explains that the Earth's outer shell is divided into several plates that glide over the mantle, the rocky inner layer above the core. This motion is responsible for earthquakes and volcanic activity."
+  },
+  {
+    "doc_id": "D27",
+    "text": "Macroeconomics deals with the performance, structure, and behavior of an economy as a whole. A key concept is inflation, which is the rate at which the general level of prices for goods and services is rising, and subsequently, purchasing power is falling."
+  },
+  {
+    "doc_id": "D28",
+    "text": "Newton's Laws of Motion are three physical laws that form the basis for classical mechanics. The first law describes inertia, the second relates force to mass and acceleration (F=ma), and the third law states that for every action, there is an equal and opposite reaction."
+  },
+  {
+    "doc_id": "D29",
+    "text": "The life cycle of a star spans billions of years. Stars are born from collapsing clouds of gas and dust. They spend most of their lives in a stable phase called the main sequence, fusing hydrogen into helium. Depending on their mass, they end their lives as either a white dwarf, a neutron star, or a black hole."
+  },
+  {
+    "doc_id": "D30",
+    "text": "Unlike stemming, which simply chops off the end of words, lemmatization uses vocabulary and morphological analysis to return the proper dictionary form of a word. For this reason, lemmatization is often considered more advanced but computationally more expensive than stemming."
+  }
+]

@@ -1,87 +1,10 @@
-Query: information (Engine: vsm)
-D22 (Skor: 0.3667): Text analysis helps extract important information.
-D4 (Skor: 0.3603): BM25 is a probabilistic model for effective information retrieval.
-D17 (Skor: 0.3554): Machine learning can also be used in information retrieval.
-D1 (Skor: 0.3415): Information retrieval is the process of obtaining relevant data from a collection of documents.
-D2 (Skor: 0.0000): Natural language processing helps computers understand human text.
-
-Query: information (Engine: bm25)
-D4 (Skor: 1.9902): BM25 is a probabilistic model for effective information retrieval.
-D17 (Skor: 1.9902): Machine learning can also be used in information retrieval.
-D22 (Skor: 1.9902): Text analysis helps extract important information.
-D1 (Skor: 1.7393): Information retrieval is the process of obtaining relevant data from a collection of documents.
-D2 (Skor: 0.0000): Natural language processing helps computers understand human text.
-
-Query: "/Users/garyeugene/Documents/Semester 6/Information Retrieval/mini-search-engine/venv/bin/python" "/Users/garyeugene/Documents/Semester 6/Information Retrieval/mini-search-engine/search.py" (Engine: bm25)
-D4 (Skor: 3.9805): BM25 is a probabilistic model for effective information retrieval.
-D17 (Skor: 3.9805): Machine learning can also be used in information retrieval.
-D22 (Skor: 3.9805): Text analysis helps extract important information.
-D1 (Skor: 3.4786): Information retrieval is the process of obtaining relevant data from a collection of documents.
-D2 (Skor: 0.0000): Natural language processing helps computers understand human text.
-
-Query: information (Engine: vsm)
-D22 (Skor: 0.3667): Text analysis helps extract important information.
-D4 (Skor: 0.3603): BM25 is a probabilistic model for effective information retrieval.
-D17 (Skor: 0.3554): Machine learning can also be used in information retrieval.
-D1 (Skor: 0.3415): Information retrieval is the process of obtaining relevant data from a collection of documents.
-D2 (Skor: 0.0000): Natural language processing helps computers understand human text.
-
 Query: high-speed (Engine: vsm)
-12 (Skor: 0.2405): some structural and aerelastic considerations of high
-speed flight .
-  the dominating factors in structural design of high-speed
-aircraft are thermal and aeroelastic in origin .  the subject
-matter is concerned largely with a discussion of these factors and
-their interrelation with one another .  a summary is presented
-of some of the analytical and experimental tools available to
-aeronautical engineers to meet the demands of high-speed flight
-upon aircraft structures .  the state of the art with respect to
-heat transfer from the boundary layer into the structure, modes
-of failure under combined load as well as thermal inputs and
-acrothermoelasticity is discussed .  methods of attacking and
-alleviating structural and aeroelastic problems of high-speed
-flight are summarized .  finally, some avenues of fundamental
-research are suggested .
-502 (Skor: 0.1847): on squire's test of the compressibility transformation .
-  discussion of a previous application, by squire, of the author's
-compressibility transformation to the correlation of high-speed
-boundary-layer data for air and helium .  squire's suggestion that
-the compressibility transformation is invalid is shown to be
-incorrect .
-203 (Skor: 0.1832): calculated velocity distributions and force derivatives
-for a series of high-speed aerofoils .
-  the polygon method of woods is used to
-calculate the velocity distribution over a number of
-two-dimensional aerofoils at low incidence, subcritical flows only
-being considered .  lift slopes and aerodynamic centres
-at zero lift are also calculated .
-  some comparisons with experimental results are made, and
-these show good agreement at zero incidence .
-1063 (Skor: 0.1673): on obtaining solutions to the navier-stokes equations
-with high speed digital computers .
-  the purpose of this paper is
-to show how to obtain steady
-state solutions to the navier-stokes
-equations on a high-speed digital
-computer .  first the relative merits
-of various finite difference
-formulae are discussed .  thereafter
-the main part of the paper is
-concerned with the methods used to
-solve the finite difference
-equations and an investigation is made
-of all the simpler iterative
-methods .
-38 (Skor: 0.1631): on the prediction of mixed subsonic/supersonic pressure
-distributions .
-  high-speed wind-tunnel results are analyzed to derive a
-semiempirical scheme for the prediction of transonic pressure
-distributions .  the supersonic and subsonic parts of the flow are
-treated separately, and then linked by an empirical shock
-pressure rise relation .  the significance of the empirical results is
-considered in relation to the physical mechanism of transonic
-flows .  it is also shown that theoretical solutions can be
-improved by introducing the empirical shock relation .
+12 (Skor: 0.2405): ... speed flight . the dominating factors in structural design of high-speed aircraft are thermal and aeroelastic in origin . the subject matter is concerned largely ...
+502 (Skor: 0.1847): ... squire, of the author's compressibility transformation to the correlation of high-speed boundary-layer data for air and helium . squire's suggestion that the compressibility transformation is ...
+203 (Skor: 0.1832): calculated velocity distributions and force derivatives for a series of high-speed aerofoils . the polygon method of woods is used to calculate the velocity distribution ...
+1063 (Skor: 0.1673): ... obtain steady state solutions to the navier-stokes equations on a high-speed digital computer . first the relative merits of various finite difference formulae are discussed ...
+38 (Skor: 0.1631): on the prediction of mixed subsonic/supersonic pressure distributions . high-speed wind-tunnel results are analyzed to derive a semiempirical scheme for the prediction of transonic pressure ...
+--------------------
 
 Query: high-speed (Engine: bm25)
 12 (Skor: 6.1105): ... speed flight . the dominating factors in structural design of high-speed aircraft are thermal and aeroelastic in origin . the subject matter is concerned largely ...
@@ -89,5 +12,29 @@ Query: high-speed (Engine: bm25)
 203 (Skor: 4.6130): calculated velocity distributions and force derivatives for a series of high-speed aerofoils . the polygon method of woods is used to calculate the velocity distribution ...
 1063 (Skor: 4.4921): ... obtain steady state solutions to the navier-stokes equations on a high-speed digital computer . first the relative merits of various finite difference formulae are discussed ...
 92 (Skor: 4.4716): the analysis of redundant structures by the use of high-speed digital computers . large-scale redundant structure analyses are currently feasible by the use of modern ...
+--------------------
+
+Query: information (Engine: vsm)
+D01 (Skor: 0.3510): Information retrieval (IR) is the science of searching for documents, for information within documents, and for metadata about documents. The core challenge in information retrieval ...
+D08 (Skor: 0.2677): Recall in information retrieval is defined as the fraction of all relevant documents in the collection that are successfully retrieved by the system.
+D12 (Skor: 0.1666): While VSM provides a simple geometric foundation for information retrieval, the BM25 model often yields superior ranking performance in real-world scenarios because it properly accounts ...
+D06 (Skor: 0.1540): Natural Language Processing (NLP) provides the foundation for a modern information retrieval system. Key NLP techniques like stemming and stopword removal are essential preprocessing steps ...
+D13 (Skor: 0.1441): Machine learning has revolutionized information retrieval. Learning to Rank (LTR) models use features from both the query and documents to train a model that can ...
+--------------------
+
+Query: information (Engine: bm25)
+D01 (Skor: 2.3295): Information retrieval (IR) is the science of searching for documents, for information within documents, and for metadata about documents. The core challenge in information retrieval ...
+D08 (Skor: 1.8870): Recall in information retrieval is defined as the fraction of all relevant documents in the collection that are successfully retrieved by the system.
+D12 (Skor: 1.4593): While VSM provides a simple geometric foundation for information retrieval, the BM25 model often yields superior ranking performance in real-world scenarios because it properly accounts ...
+D06 (Skor: 1.4322): Natural Language Processing (NLP) provides the foundation for a modern information retrieval system. Key NLP techniques like stemming and stopword removal are essential preprocessing steps ...
+D15 (Skor: 1.3810): ... map of the web. This index is the foundation for information retrieval.
+--------------------
+
+Query: ranking algorithms in search engines (Engine: vsm)
+D09 (Skor: 0.4489): Modern search engines use complex ranking algorithms, often based on the BM25 model, to retrieve relevant web pages from a massive collection. The evaluation of ...
+D19 (Skor: 0.4131): A good ranking algorithm is the heart of a successful search engine. The ability to consistently place the most relevant documents at the top of ...
+D02 (Skor: 0.1571): ... often more effective probabilistic model is BM25, which provides superior ranking by considering document length. Both models are fundamental to search engine technology, but the ...
+D16 (Skor: 0.1565): An inverted index is the core data structure of most search engines. It maps terms to the documents that contain them, allowing for extremely fast ...
+D01 (Skor: 0.1239): Information retrieval (IR) is the science of searching for documents, for information within documents, and for metadata about documents. The core challenge in information retrieval ...
 --------------------
 
