@@ -1,0 +1,39 @@
+{
+  "measuring search engine performance": [
+    "D03",
+    "D07",
+    "D08",
+    "D11",
+    "D23"
+  ],
+  "vector space and probabilistic models": [
+    "D02",
+    "D04",
+    "D05",
+    "D12",
+    "D17"
+  ],
+  "natural language processing for IR": [
+    "D06",
+    "D10",
+    "D14",
+    "D20",
+    "D30"
+  ],
+  "causes of economic inflation": [
+    "D27"
+  ],
+  "what is plate tectonics": [
+    "D26"
+  ],
+  "ranking algorithms in search engines": [
+    "D01",
+    "D09",
+    "D13",
+    "D19"
+  ],
+  "lemmatization vs stemming": [
+    "D20",
+    "D30"
+  ]
+}
