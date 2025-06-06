@@ -104,13 +104,11 @@ print(f"  BM25  → Precision: {bm25_avg['precision']:.2f}, Recall: {bm25_avg['r
 # Membuat kesimpulan otomatis berdasarkan perbandingan F1-score rata-rata.
 print("Kesimpulan:")
 if vsm_avg['f1'] > bm25_avg['f1']:
-    print("VSM memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
+    print("VSM memiliki performa lebih baik.")
 elif bm25_avg['f1'] > vsm_avg['f1']:
-    print("BM25 memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
+    print("BM25 memiliki performa lebih baik.")
 else:
-    print("VSM dan BM25 memiliki performa seimbang berdasarkan nilai rata-rata F1-score.")
-# Menambahkan analisis kualitatif singkat tentang kekuatan masing-masing model.
-print("BM25 cenderung lebih robust karena mempertimbangkan panjang dokumen dan frekuensi kata, sedangkan VSM lebih sederhana dan efektif untuk dokumen dengan panjang seragam.")
+    print("VSM dan BM25 memiliki performa seimbang.")
 
 # --- Visualisasi (Opsional) ---
 # Bagian ini akan membuat diagram batang jika pustaka matplotlib terinstal.

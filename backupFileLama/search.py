@@ -9,42 +9,15 @@
 # 5. Beralih antar model pencarian atau keluar dari program.
 
 # --- Impor Pustaka ---
-import os # Untuk membaca data dari folder 'data'
 import json  # Untuk memuat data dokumen dari file.
 from search_engine.vsm import VSMEngine  # Mengimpor kelas mesin pencari VSM.
 from search_engine.bm25 import BM25Engine  # Mengimpor kelas mesin pencari BM25.
 from search_engine.preprocessing import preprocess  # Mengimpor fungsi preprocessing untuk membersihkan query dan teks snippet.
 
-# --- Persiapan Data untuk Pencarian ---
-# --- Fungsi Pemuatan Dokumen ---
-def select_file_data():
-    # Hanya ambil file yang dimulai dengan 'documents' dan berakhiran '.json'
-    files = [f for f in os.listdir('data') if f.startswith('documents') and f.endswith('.json')]
-    if not files:
-        print("Tidak ada file dokumen yang valid di folder 'data'.")
-        exit()
-
-    print("\nPilih file data:")
-    for i, file in enumerate(files, start=1):
-        print(f"{i}. {file}")
-
-    while True:
-        try:
-            pilihan = int(input("\nMasukkan nomor file yang ingin digunakan: "))
-            if 1 <= pilihan <= len(files):
-                selected_file = files[pilihan - 1]
-                print(f"\n> File nomor {pilihan} dengan nama {selected_file}")
-                print(f"> Proses data...")
-                return os.path.join('data', selected_file)
-            else:
-                print("\n> Nomor tidak valid atau berada diluar nomor yang tersedia!")
-        except ValueError:
-            print("\n> Masukkan harus berupa angka!")
-
-# --- Panggil fungsi fetch dokumen ---
-selected_path = select_file_data()
-# --- Masukan data pilihan pengguna ke docs ---
-with open(selected_path, 'r') as f:
+# --- Pemuatan Dokumen ---
+# Membuka dan memuat seluruh koleksi dokumen dari file JSON.
+# Ini bisa diganti dengan 'data/documentsNew.json'
+with open('data/documentsLibraryNew.json') as f:
     docs = json.load(f)
 
 # --- Persiapan Data untuk Pencarian ---
@@ -124,54 +97,29 @@ def run_search_loop(searcher, engine_name):
     Returns:
         bool: False jika pengguna ingin keluar, True jika pengguna ingin mengganti engine.
     """
-    global selected_path
 
     while True:
         # Meminta input dari pengguna.
-        query = input("\nMasukkan query ('/exit' untuk keluar, '/engine' untuk ganti mesin, '/data' untuk ganti data): ")
+        query = input("\nMasukkan query ('exit' untuk keluar, 'engine' untuk ganti mesin): ")
         
         # Query untuk keluar dari program.
-        if query.lower() == '/exit':
+        if query.lower() == 'exit':
             return False
         # Query untuk kembali ke menu pemilihan engine.
-        elif query.lower() == '/engine':
+        elif query.lower() == 'engine':
             return True
-        # Query untuk kembali ke menu pemilihan data
-        elif query.lower() == '/data':
-            # Reset semua variabel yang sudah di gunakan
-            global docs, raw_texts, doc_ids, doc_lookup, vsm_engine, bm25_engine
-            # Pilih ulang file data JSON
-            selected_path = select_file_data()
-            with open(selected_path, 'r') as f:
-                docs = json.load(f)
-            
-            # --- Persiapan Data untuk Pencarian ---
-            # Mengekstrak teks mentah dari setiap dokumen untuk diindeks oleh mesin pencari.
-            raw_texts = [doc["text"] for doc in docs]
-            # Menyimpan ID dokumen dalam urutan yang sama untuk referensi nanti.
-            doc_ids = [doc["doc_id"] for doc in docs]
-            # Membuat 'lookup table' (seperti kamus) untuk mendapatkan teks asli dokumen dengan cepat menggunakan doc_id.
-            # Ini sangat efisien untuk mengambil teks saat akan membuat snippet.
-            doc_lookup = {doc["doc_id"]: doc["text"] for doc in docs}
-            
-            vsm_engine = VSMEngine(raw_texts)
-            bm25_engine = BM25Engine(raw_texts)
-            searcher = vsm_engine if engine_name == 'vsm' else bm25_engine
-            continue
 
         # Menentukan jumlah hasil teratas yang akan ditampilkan.
         top_k = 5
         # Menjalankan pencarian menggunakan objek 'searcher' yang telah dipilih.
         ranked_ids, scores = searcher.search(query, top_k=top_k)
-        # sorted_scores = sorted(scores, reverse=True)
-        # print(sorted_scores)
 
         # Memeriksa apakah ada hasil yang ditemukan.
         if not ranked_ids or all(scores[i] == 0 for i in ranked_ids):
             print("Tidak ada dokumen relevan ditemukan.")
             continue
 
-        print(f"\nTop {top_k} dokumen dari data {os.path.basename(selected_path)} yang relevan menurut {engine_name.upper()}:\n")
+        print(f"\nTop {top_k} dokumen relevan menurut {engine_name.upper()}:\n")
         
         # --- Menampilkan Hasil Pencarian ---
         # Iterasi melalui ID dokumen yang sudah diperingkat.
@@ -197,14 +145,11 @@ def run_search_loop(searcher, engine_name):
                 f.write(f"{doc_id} (Skor: {scores[i]:.4f}): {snippet}\n")
             f.write("-" * 20 + "\n\n")
 
-# Log jika  memuat data pilihan
-print(f"> {len(docs)} dokumen  berhasil dimuat!")
-
 # --- Loop Program Utama ---
 # Loop ini berjalan terus menerus sampai pengguna memilih untuk keluar.
 while True:
     # Meminta pengguna untuk memilih mesin pencari.
-    engine_choice = input("\nPilih engine (vsm / bm25): ").lower()
+    engine_choice = input("Pilih engine (vsm / bm25): ").lower()
     
     # Validasi input pengguna.
     if engine_choice not in ['vsm', 'bm25']:
