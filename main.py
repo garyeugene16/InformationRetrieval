@@ -13,20 +13,47 @@
 # 5. Secara opsional, menampilkan visualisasi perbandingan dalam bentuk diagram batang.
 
 # --- Impor Pustaka ---
+import os
 import json  # Untuk memuat data dari file JSON.
 from search_engine.vsm import VSMEngine  # Mengimpor kelas mesin pencari VSM.
 from search_engine.bm25 import BM25Engine  # Mengimpor kelas mesin pencari BM25.
 from search_engine.evaluation import precision_recall_f1  # Mengimpor fungsi untuk menghitung metrik evaluasi.
 import matplotlib.pyplot as plt  # Pustaka untuk membuat plot/grafik visualisasi, bersifat opsional.
 
-# --- Pemuatan Data ---
-# Memuat data dokumen dari file JSON yang telah disiapkan oleh `extract_cranfield.py`.
-# Ini bisa diganti juga dengan 'data/documentsNew.json'
-with open('data/documentsLibrary.json') as f:
+def select_file_pair():
+    """
+    Memilih pasangan dokumen dan ground truth secara otomatis berdasarkan pilihan user.
+    """
+    pilihan_map = {
+        1: ("documentsLibrary.json", "ground_truthLibrary.json"),
+        2: ("documentsNew.json", "ground_truthNew.json"),
+    }
+
+    print("Pilih file untuk documents:")
+    print("1. documentsLibrary.json")
+    print("2. documentsNew.json")
+
+    while True:
+        try:
+            pilihan = int(input("Masukkan nomor file untuk documents: "))
+            if pilihan in pilihan_map:
+                doc_file, gt_file = pilihan_map[pilihan]
+                print(f"> File documents yang dipilih: {doc_file}")
+                print(f"> File ground_truth yang dipilih otomatis: {gt_file}")
+                return os.path.join("data", doc_file), os.path.join("data", gt_file)
+            else:
+                print("Nomor tidak valid.")
+        except ValueError:
+            print("Masukkan harus berupa angka.")
+
+# --- PILIH FILE DOKUMEN DAN GROUND TRUTH SECARA OTOMATIS BERPASANGAN ---
+doc_path, gt_path = select_file_pair()
+
+# --- LOAD DATA ---
+with open(doc_path) as f:
     docs = json.load(f)
 
-# Memuat data ground truth (query dan dokumen relevan) dari file JSON.
-with open('data/ground_truthLibrary.json') as f:
+with open(gt_path) as f:
     ground_truth = json.load(f)
 
 # --- Persiapan Data ---
@@ -104,13 +131,11 @@ print(f"  BM25  → Precision: {bm25_avg['precision']:.2f}, Recall: {bm25_avg['r
 # Membuat kesimpulan otomatis berdasarkan perbandingan F1-score rata-rata.
 print("Kesimpulan:")
 if vsm_avg['f1'] > bm25_avg['f1']:
-    print("VSM memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
+    print("VSM memiliki performa lebih baik.")
 elif bm25_avg['f1'] > vsm_avg['f1']:
-    print("BM25 memiliki performa lebih baik berdasarkan nilai rata-rata F1-score.")
+    print("BM25 memiliki performa lebih baik.")
 else:
-    print("VSM dan BM25 memiliki performa seimbang berdasarkan nilai rata-rata F1-score.")
-# Menambahkan analisis kualitatif singkat tentang kekuatan masing-masing model.
-print("BM25 cenderung lebih robust karena mempertimbangkan panjang dokumen dan frekuensi kata, sedangkan VSM lebih sederhana dan efektif untuk dokumen dengan panjang seragam.")
+    print("VSM dan BM25 memiliki performa seimbang.")
 
 # --- Visualisasi (Opsional) ---
 # Bagian ini akan membuat diagram batang jika pustaka matplotlib terinstal.
