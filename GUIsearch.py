@@ -30,7 +30,7 @@ def get_document_files():
     """Mendapatkan daftar file dokumen yang valid"""
     return [f for f in os.listdir('data') if f.startswith('documents') and f.endswith('.json')]
 
-# --- Fungsi yang copy dari search2.py ---
+# --- Salinan fungsi memuat dokumen dari search2.py ---
 def load_documents_from_json(file_path):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -56,6 +56,7 @@ def load_documents_from_json(file_path):
         st.sidebar.error(f"Terjadi kesalahan saat memuat JSON: {e}")
         return [], [], [], {}
 
+# Salinan kode dari search.py
 def generate_snippet(query, doc_text, max_length=150):
     """
     Membuat cuplikan (snippet) dari teks dokumen yang relevan dengan query.
@@ -103,10 +104,10 @@ def generate_snippet(query, doc_text, max_length=150):
         
     return snippet
 
-
 # --- UI Streamlit ---
 st.set_page_config(layout="wide")
 
+# Untuk heading
 st.markdown("<h1 style='text-align: center;'>Mini Search Engine</h1>", unsafe_allow_html=True)
 
 # Sidebar untuk atur data dan model
@@ -185,9 +186,10 @@ if st.session_state.raw_docs:
                                   max_value=top_k_max_val if top_k_max_val > 0 else 1, 
                                   value=top_k_default_val)
 
-    st.subheader("Masukkan Kueri Pencarian")
-    query = st.text_input("Kueri:")
+    st.subheader("Masukkan Kueri Pencarian :")
+    query = st.text_input(label="Query", label_visibility="collapsed")
 
+    # Tombol untuk mencari dokumen dengan mengambil isi field kueri
     if st.button("Cari Dokumen"):
         if not query:
             st.warning("Harap masukkan kueri.")
@@ -196,15 +198,13 @@ if st.session_state.raw_docs:
         else:
             with st.spinner("Mencari..."):
                 ranked_ids, scores = st.session_state.engine.search(query, top_k=top_k)
-                    # sorted_scores = sorted(scores, reverse=True)
-                    # print(sorted_scores)
+                
             st.subheader(f"Hasil Pencarian untuk: '{query}'")
             if not ranked_ids or all(scores[i] == 0 for i in ranked_ids):
                 st.write("Tidak ada dokumen yang relevan ditemukan.")
             else:
                 results_data = []
                 for rank, doc_id in enumerate(ranked_ids):
-                    # Gunakan doc_ids seperti di search2.py
                     doc_name = st.session_state.doc_ids[doc_id]
                     score_value = scores[doc_id]
                     full_text = st.session_state.doc_lookup[doc_name]
@@ -222,9 +222,9 @@ if st.session_state.raw_docs:
                         df_to_display,
                         column_config={
                             "Peringkat": st.column_config.NumberColumn(width="small"),
-                            "Doc_ID": st.column_config.TextColumn(width="medium"),
+                            "Doc_ID": st.column_config.TextColumn(width="small"),
                             "Skor": st.column_config.NumberColumn(width="small", format="%.4f"),
-                            "Preview": st.column_config.TextColumn(width="large")
+                            "Preview": st.column_config.TextColumn(width=None)
                         },
                         hide_index=True,
                         use_container_width=True
