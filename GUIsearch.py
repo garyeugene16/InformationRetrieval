@@ -5,16 +5,14 @@ import pandas as pd
 from search_engine.preprocessing import preprocess
 from search_engine.vsm import VSMEngine
 from search_engine.bm25 import BM25Engine
-from search_engine.evaluation import precision_recall_f1
 
 # Modifikasi st.session_state agar sinkron dengan search2.py
 if 'raw_docs' not in st.session_state:
     st.session_state.raw_docs = []
     st.session_state.doc_names = []
-    st.session_state.doc_ids = []  # Tambahkan ini
-    st.session_state.doc_lookup = {}  # Tambahkan ini
+    st.session_state.doc_ids = [] 
+    st.session_state.doc_lookup = {}  
     st.session_state.engine = None
-    st.session_state.predicted_ids_for_eval = []
     st.session_state.current_engine_key = None
     st.session_state.current_file = None
 
@@ -111,8 +109,30 @@ st.set_page_config(layout="wide")
 
 st.markdown("<h1 style='text-align: center;'>Mini Search Engine</h1>", unsafe_allow_html=True)
 
-# Sidebar untuk Kontrol
+# Sidebar untuk atur data dan model
 st.sidebar.header("Pengaturan Data Dokumen")
+
+# Untuk footer
+st.markdown(
+    """
+    <style>
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: left;
+        font-size: 15px;
+        color: gray;
+        padding: 10px 0px;
+    }
+    </style>
+
+    <div class="footer">
+        Tugas Information Retrieval oleh : Rio Sugiarno (6182201043), Gary Eugene (6182201046), Hepi Rahmat Stevanus Daeli (6182201052), dan Albert Christian Lifen (6182201055)
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Pilihan file dokumen
 document_files = get_document_files()
@@ -125,29 +145,27 @@ selected_file = st.sidebar.selectbox(
     document_files,
     index=0
 )
-
+# Proses dokumen pilihan pengguna
 if st.sidebar.button("Muat Dokumen"):
     file_path = os.path.join('data', selected_file)
     with st.spinner("Memuat dan memproses dokumen dari JSON..."):
-        # Ubah nama variabel untuk konsistensi dengan search2.py
         st.session_state.raw_docs, st.session_state.doc_ids, st.session_state.doc_names, st.session_state.doc_lookup = load_documents_from_json(file_path)
         if st.session_state.raw_docs:
             st.sidebar.success(f"{len(st.session_state.raw_docs)} dokumen berhasil dimuat!")
             st.session_state.engine = None
-            st.session_state.predicted_ids_for_eval = []
             st.session_state.current_engine_key = None
             st.session_state.current_file = selected_file
 
 if st.session_state.raw_docs:
+    # Log banyak dokumen dan pilihan dokumen
     st.sidebar.header("Pengaturan Model Pencarian")
     st.sidebar.write(f"Jumlah dokumen: {len(st.session_state.raw_docs)}")
     st.sidebar.write(f"File aktif: {st.session_state.current_file}")
-    
+
+    # Buat pilihan model
     model_choice = st.sidebar.selectbox("Pilih Model:", ["VSM", "BM25"])
-    k_param, b_param = 1.5, 0.75
-    if model_choice == "BM25":
-        k_param = st.sidebar.slider("Parameter k (BM25):", 0.0, 3.0, 1.5, 0.1)
-        b_param = st.sidebar.slider("Parameter b (BM25):", 0.0, 1.0, 0.75, 0.05)
+    k_param = 1.5
+    b_param = 0.75
 
     engine_key = f"{model_choice}_{k_param}_{b_param}" if model_choice == "BM25" else model_choice
     
@@ -211,32 +229,5 @@ if st.session_state.raw_docs:
                         hide_index=True,
                         use_container_width=True
                     )
-                    st.session_state.predicted_ids_for_eval = ranked_ids
-
-    if st.session_state.predicted_ids_for_eval:
-        st.markdown("---")
-        st.subheader("Evaluasi Hasil")
-        relevant_docs_str = st.text_input(
-            "Masukkan ID Dokumen Relevan (pisahkan dengan koma, contoh: 0,2,5):",
-            help="Gunakan indeks dokumen (mulai dari 0) sesuai urutan pemuatan awal."
-        )
-
-        if st.button("Hitung Metrik Evaluasi"):
-            if relevant_docs_str:
-                try:
-                    relevant_ids = [int(id_str.strip()) for id_str in relevant_docs_str.split(',')]
-                    predicted_ids = st.session_state.predicted_ids_for_eval
-                    
-                    precision, recall, f1 = precision_recall_f1(predicted_ids, relevant_ids)
-                    
-                    st.metric(label="Precision", value=f"{precision:.4f}")
-                    st.metric(label="Recall", value=f"{recall:.4f}")
-                    st.metric(label="F1-Score", value=f"{f1:.4f}")
-                except ValueError:
-                    st.error("Format ID dokumen relevan salah. Harap masukkan angka yang dipisahkan koma.")
-                except Exception as e:
-                    st.error(f"Terjadi kesalahan saat evaluasi: {e}")
-            else:
-                st.warning("Harap masukkan ID dokumen yang relevan untuk evaluasi.")
 else:
     st.info("Untuk memulai pencarian, silahkan pilih dan muat dokumen di Side Bar.")
